@@ -9,13 +9,13 @@ from os import path
 HERE = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
-with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
+with open(path.join(HERE, 'readme.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 # This call to setup() does all the work
 setup(
     name="klarity-connector",
-    version="0.1.1",
+    version="0.1.3",
     description="Python connector to GraphQL API of Klarity",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -33,6 +33,7 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Topic :: Software Development :: Libraries",
         "Operating System :: OS Independent"
     ],

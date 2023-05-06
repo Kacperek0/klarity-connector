@@ -17,12 +17,13 @@ class KlarityConnector:
     :type api_key: str
 
     """
-    def __init__(self, region: str, api_key: str):
+    def __init__(self, region: str, api_key: str, billing_period: str = 'current'):
         """
         Establish Klarity connection
         """
         self.region = region
         self.api_key = api_key
+        self.billing_period = billing_period
         self.url = self.__get_url(region)
 
         self.retry_strategy = Retry(
@@ -43,15 +44,14 @@ class KlarityConnector:
         """
         Get url for region
         """
-        match region:
-            case 'us':
-                return 'https://api.cnop-int.us.nordcloudapp.com/graphql'
-            case 'eu':
-                return 'https://api.cnop-int.nordcloudapp.com/graphql'
-            case 'uk':
-                return 'https://api.cnop-int.uk.nordcloudapp.com/graphql'
-            case _:
-                raise ValueError(f'Invalid region: {region}')
+        if region == 'us':
+            return 'https://api.cnop-int.us.nordcloudapp.com/graphql'
+        elif region == 'eu':
+            return 'https://api.cnop-int.nordcloudapp.com/graphql'
+        elif region == 'uk':
+            return 'https://api.cnop-int.uk.nordcloudapp.com/graphql'
+        else:
+            raise ValueError(f'Invalid region: {region}')
 
     def graphql_request(self, query: str, variables: dict = None) -> dict:
         """
@@ -64,7 +64,8 @@ class KlarityConnector:
                 'query': query,
                 'variables': variables
             }, headers={
-                'x-api-key': self.api_key
+                'x-api-key': self.api_key,
+                'x-billing-period': self.billing_period
             }
         )
 

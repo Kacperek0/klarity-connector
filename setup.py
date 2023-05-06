@@ -15,7 +15,7 @@ with open(path.join(HERE, 'readme.md'), encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="klarity-connector",
-    version="0.1.3",
+    version="0.1.4",
     description="Python connector to GraphQL API of Klarity",
     long_description=long_description,
     long_description_content_type="text/markdown",

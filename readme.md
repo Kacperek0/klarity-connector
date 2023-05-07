@@ -15,6 +15,7 @@ from klarity_connector import KlarityConnector
 connector = KlarityConnector(
     region='eu'
     api_key='YOUR_API_KEY',
+    billing_period='current' | 'previous' # Current is a default billing period
 )
 
 # Sending GraphQL query
